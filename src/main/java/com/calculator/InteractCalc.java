@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class InteractCalc {
 
-    private Calculator calculator = new Calculator();
-    private Scanner scanner = new Scanner(System.in);
-    private List<String> operations = new ArrayList<>(Arrays.asList("+", "-", ":", "*"));
-    private Double firstD;
-    private String operation;
-    private Integer secondI;
+    protected Calculator calculator = new Calculator();
+    protected Scanner scanner = new Scanner(System.in);
+    protected List<String> operations = new ArrayList<>(Arrays.asList("+", "-", ":", "*"));
+    protected Double firstD;
+    protected String operation;
+    protected Double secondD;
 
     /**
      * @param calculator
@@ -33,10 +33,10 @@ public class InteractCalc {
         if (useResult(first)) {
             operation = first;
             firstD = calculator.getResult();
-            secondI = Integer.parseInt(line[1]);
+            secondD = Double.parseDouble(line[1]);
         } else {
             firstD = Double.parseDouble(line[0]);
-            secondI = Integer.parseInt(line[2]);
+            secondD = Double.parseDouble(line[2]);
             operation = line[1];
         }
     }
@@ -57,22 +57,22 @@ public class InteractCalc {
     public void getResult() {
         switch (operation) {
             case "+":
-                calculator.add(firstD, secondI, (valueOne, valueTwo) -> {
+                calculator.add(firstD, secondD, (valueOne, valueTwo) -> {
                     return (double) (valueOne + valueTwo);
                 }, result -> System.out.println("result : " + result));
                 break;
             case "-":
-                calculator.subtract(firstD, secondI, (valueOne, valueTwo) -> {
+                calculator.subtract(firstD, secondD, (valueOne, valueTwo) -> {
                     return (double) (valueOne - valueTwo);
                 }, result -> System.out.println("result : " + result));
                 break;
             case ":":
-                calculator.div(firstD, secondI, (valueOne, valueTwo) -> {
+                calculator.div(firstD, secondD, (valueOne, valueTwo) -> {
                     return (double) (valueOne / valueTwo);
                 }, result -> System.out.println("result : " + result));
                 break;
             case "*":
-                calculator.multiple(firstD, secondI, (valueOne, valueTwo) -> {
+                calculator.multiple(firstD, secondD, (valueOne, valueTwo) -> {
                     return (double) (valueOne * valueTwo);
                 }, result -> System.out.println("result : " + result));
                 break;
