@@ -1,5 +1,6 @@
 package com.market;
 
+import com.market.products.Cheese;
 import com.market.products.Food;
 import com.market.products.Pie;
 import com.market.storages.Shop;
@@ -69,8 +70,8 @@ public class ControlQualityTest {
         expaireDate.set(year, month, date + 1);
         Calendar createDate = Calendar.getInstance();
         createDate.set(year, month, date - 4);
-        Pie pie_for_shop = new Pie("pie for shop wit discount", expaireDate, createDate);
-        controllQuality.putFoodToStorage(pie_for_shop);
-        assertEquals(" storage: Shop; food: pie for shop wit discount ; discount: 13" + System.getProperty("line.separator"), out.toString());
+        Cheese cheese_for_shop = new Cheese("cheese for shop with discount", expaireDate, createDate);
+        controllQuality.putFoodToStorage(cheese_for_shop);
+        assertEquals(" storage: Shop; food: cheese for shop with discount ; discount: 13" + System.getProperty("line.separator"), out.toString());
     }
 }

@@ -5,14 +5,14 @@ import com.market.products.Food;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Storage {
+public abstract class Storage {
 
     protected List<Food> foods = new ArrayList<>();
 
     public void addFood(Food food) {
         foods.add(food);
     }
-
+    public abstract boolean accept(int percent);
     public void removeLastOne() {
         foods.remove(foods.size() - 1);
     }
