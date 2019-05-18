@@ -11,6 +11,10 @@ public class NewFood extends Food {
     public NewFood() {
     }
 
+    public NewFood(Food food) {
+        this.food = food;
+    }
+
     @Override
     public Integer getDiscount() {
         return food.getDiscount();
@@ -19,18 +23,6 @@ public class NewFood extends Food {
     @Override
     public String getName() {
         return food.getName();
-    }
-
-    public NewFood(boolean isVegetable) {
-        this.isVegetable = isVegetable;
-    }
-
-    public NewFood(Food food) {
-        this.food = food;
-    }
-
-    public NewFood(String Name, Calendar expaireDate, Calendar createDate) {
-        super(Name, expaireDate, createDate);
     }
 
     public Food getFood() {

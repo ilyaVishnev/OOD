@@ -38,15 +38,13 @@ public class ControlQualityNextTest {
         ControllQualityNext controllQuality = new ControllQualityNext();
         Calendar today = Calendar.getInstance();
         Calendar expaireDate = Calendar.getInstance();
-        expaireDate.set(2019, 4, 14);
+        expaireDate.set(year, month, date - 1);
         Calendar createDate = Calendar.getInstance();
-        createDate.set(2019, 4, 11);
+        createDate.set(year, month - 1, date);
         Pie reproduct_pie = new Pie("reproduct pie", expaireDate, createDate);
         controllQuality.getNewFood().setCanReproduct(true);
         controllQuality.putFoodToStorage(reproduct_pie);
-        assertEquals(" storage: Trash; food: reproduct pie ; discount: 0" + System.getProperty("line.separator")+
-                "removed from Trash" + System.getProperty("line.separator")+" reproductStorage: Warehouse; food: reproduct pie ; discount: 0"+
-                System.getProperty("line.separator"), out.toString());
+        assertEquals(" storage: ReproductStore; food: reproduct pie ; discount: 0" + System.getProperty("line.separator"), out.toString());
     }
 
     @Test
@@ -54,14 +52,14 @@ public class ControlQualityNextTest {
         ControllQualityNext controllQuality = new ControllQualityNext();
         Calendar today = Calendar.getInstance();
         Calendar expaireDate = Calendar.getInstance();
-        expaireDate.set(2019, 4, 24);
+        expaireDate.set(year, month + 1, date);
         Calendar createDate = Calendar.getInstance();
-        createDate.set(2019, 4, 14);
+        createDate.set(year, month, date - 1);
         Pie pie_for_newWaren = new Pie("pie for newWaren", expaireDate, createDate);
         controllQuality.getNewFood().setFood(pie_for_newWaren);
         controllQuality.putFoodToStorage(pie_for_newWaren);
-        assertEquals(" storage: Warehouse; food: pie for newWaren ; discount: 0" + System.getProperty("line.separator")+
-                "to New storage: Warehouse; food: pie for newWaren ; discount: 0" + System.getProperty("line.separator"), out.toString());
+        assertEquals(" storage: NewWarehouse; food: pie for newWaren ; discount: 0" + System.getProperty("line.separator")
+                , out.toString());
     }
 
     @Test
@@ -69,13 +67,13 @@ public class ControlQualityNextTest {
         ControllQualityNext controllQuality = new ControllQualityNext();
         Calendar today = Calendar.getInstance();
         Calendar expaireDate = Calendar.getInstance();
-        expaireDate.set(2019, 4, 17);
+        expaireDate.set(year, month, date + 12);
         Calendar createDate = Calendar.getInstance();
-        createDate.set(2019, 4, 11);
+        createDate.set(year, month, date - 1);
         Food vegetable = new Food("vegetable", expaireDate, createDate);
         controllQuality.getNewFood().setVegetable(true);
         controllQuality.putFoodToStorage(vegetable);
-        assertEquals(" storage: Shop; food: vegetable ; discount: 13" + System.getProperty("line.separator")+
-                " refregeratorStorage: Warehouse; food: vegetable ; discount: 13" + System.getProperty("line.separator"), out.toString());
+        assertEquals(" storage: LowTemperatureStore; food: vegetable ; discount: 0" + System.getProperty("line.separator"),
+                out.toString());
     }
 }
