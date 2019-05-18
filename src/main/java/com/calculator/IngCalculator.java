@@ -2,9 +2,6 @@ package com.calculator;
 
 public class IngCalculator extends InteractCalc {
 
-    /**
-     * @param calculator
-     */
     public IngCalculator(Calculator calculator) {
         super(calculator);
         this.operations.add("sin");
@@ -15,29 +12,37 @@ public class IngCalculator extends InteractCalc {
 
     @Override
     public void getResult() {
-        super.getResult();
         switch (this.operation) {
             case "sin":
-                this.calculator.trig(this.secondD, value -> {
-                    return Math.sin(this.secondD);
-                }, result -> System.out.println("result : " + result));
+                sin();
                 break;
             case "cos":
-                this.calculator.trig(this.secondD, value -> {
-                    return Math.cos(this.secondD);
-                }, result -> System.out.println("result : " + result));
+                cos();
                 break;
             case "tg":
-                this.calculator.trig(this.secondD, value -> {
-                    return Math.tan(this.secondD);
-                }, result -> System.out.println("result : " + result));
+                tan();
                 break;
             case "ctg":
-                this.calculator.trig(this.secondD, value -> {
-                    return 1 / Math.tan(this.secondD);
-                }, result -> System.out.println("result : " + result));
+                ctg();
                 break;
         }
+        super.getResult();
+    }
+
+    public Double sin() {
+        return super.calculator.result = Math.sin(secondD);
+    }
+
+    public Double cos() {
+        return super.calculator.result = Math.cos(secondD);
+    }
+
+    public Double tan() {
+        return super.calculator.result = Math.tan(secondD);
+    }
+
+    public Double ctg() {
+        return super.calculator.result = 1 / Math.tan(this.secondD);
     }
 
     public static void main(String[] args) {
