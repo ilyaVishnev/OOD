@@ -8,17 +8,16 @@ import java.util.Scanner;
 
 public class InteractCalc {
 
-    protected Calculator calculator = new Calculator();
     protected Scanner scanner = new Scanner(System.in);
     protected List<String> operations = new ArrayList<>(Arrays.asList("+", "-", ":", "*"));
     protected Double firstD;
     protected String operation;
     protected Double secondD;
+    protected Calculator calculator;
 
     /**
      * @param calculator
      */
-
     public InteractCalc(Calculator calculator) {
         this.calculator = calculator;
     }
@@ -57,28 +56,21 @@ public class InteractCalc {
     public void getResult() {
         switch (operation) {
             case "+":
-                calculator.add(firstD, secondD, (valueOne, valueTwo) -> {
-                    return (double) (valueOne + valueTwo);
-                }, result -> System.out.println("result : " + result));
+                calculator.add(firstD, secondD);
                 break;
             case "-":
-                calculator.subtract(firstD, secondD, (valueOne, valueTwo) -> {
-                    return (double) (valueOne - valueTwo);
-                }, result -> System.out.println("result : " + result));
+                calculator.subtract(firstD, secondD);
                 break;
             case ":":
-                calculator.div(firstD, secondD, (valueOne, valueTwo) -> {
-                    return (double) (valueOne / valueTwo);
-                }, result -> System.out.println("result : " + result));
+                calculator.div(firstD, secondD);
                 break;
             case "*":
-                calculator.multiple(firstD, secondD, (valueOne, valueTwo) -> {
-                    return (double) (valueOne * valueTwo);
-                }, result -> System.out.println("result : " + result));
+                calculator.multiple(firstD, secondD);
                 break;
             default:
                 break;
         }
+        System.out.println("result : " + calculator.getResult());
     }
 
     /**

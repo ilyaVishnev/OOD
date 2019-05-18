@@ -6,39 +6,25 @@ import java.util.function.Function;
 
 public class Calculator {
 
-    private double result;
+    protected double result;
 
-    public void add(Double first, Double second, BiFunction<Double, Double, Double> op, Consumer<Double> media) {
-
-        this.result = op.apply(first, second);
-        media.accept(this.result);
+    public void add(double first, double second) {
+        this.result = first + second;
     }
 
-    public void subtract(Double first, Double second, BiFunction<Double, Double, Double> op, Consumer<Double> media) {
-
-        this.result = op.apply(first, second);
-        media.accept(this.result);
+    public void subtract(double first, double second) {
+        this.result = first - second;
     }
 
-    public void div(Double first, Double second, BiFunction<Double, Double, Double> op, Consumer<Double> media) {
-
-        this.result = op.apply(first, second);
-        media.accept(this.result);
+    public void div(double first, double second) {
+        this.result = first / second;
     }
 
-    public void multiple(Double first, Double second, BiFunction<Double, Double, Double> op, Consumer<Double> media) {
-
-        this.result = op.apply(first, second);
-        media.accept(this.result);
-    }
-
-    public void trig(Double first, Function<Double, Double> op, Consumer<Double> media) {
-        this.result = op.apply(first);
-        media.accept(this.result);
+    public void multiple(double first, double second) {
+        this.result = first * second;
     }
 
     public double getResult() {
-
         return this.result;
     }
 }
