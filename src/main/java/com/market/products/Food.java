@@ -11,8 +11,8 @@ public class Food {
     protected Calendar expaireDate;
     protected Calendar createDate;
     protected Integer price;
-    protected Integer discount;
-    protected Storage storage;
+    protected int percent = 0;
+    protected Integer discount = 0;
 
     public Food() {
     }
@@ -21,6 +21,11 @@ public class Food {
         this.Name = Name;
         this.expaireDate = expaireDate;
         this.createDate = createDate;
+    }
+
+    public int getPercent() {
+        return (int) (((double) (Calendar.getInstance().getTimeInMillis() - getCreateDate().getTimeInMillis()) / (getExpaireDate().getTimeInMillis()
+                - getCreateDate().getTimeInMillis())) * 100);
     }
 
     public String getName() {
@@ -61,13 +66,5 @@ public class Food {
 
     public void setDiscount(Integer discount) {
         this.discount = discount;
-    }
-
-    public Storage getStorage() {
-        return storage;
-    }
-
-    public void setStorage(Storage storage) {
-        this.storage = storage;
     }
 }

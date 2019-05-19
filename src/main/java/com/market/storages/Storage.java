@@ -12,7 +12,9 @@ public abstract class Storage {
     public void addFood(Food food) {
         foods.add(food);
     }
-    public abstract boolean accept(int percent);
+
+    public abstract boolean accept(Food food);
+
     public void removeLastOne() {
         foods.remove(foods.size() - 1);
     }
