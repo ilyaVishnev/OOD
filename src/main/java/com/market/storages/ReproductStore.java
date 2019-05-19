@@ -5,17 +5,18 @@ import com.market.products.NewFood;
 
 public class ReproductStore extends Storage {
 
-    protected NewFood food;
+    protected NewFood newFood;
 
     @Override
-    public boolean accept(int percent) {
-        if (food.isCanReproduct() && percent > 100) {
+    public boolean accept(Food food) {
+        if (newFood.isCanReproduct() && food.getPercent() > 100) {
+            foods.add(newFood);
             return true;
         }
         return false;
     }
 
     public void setFood(NewFood food) {
-        this.food = food;
+        this.newFood = food;
     }
 }

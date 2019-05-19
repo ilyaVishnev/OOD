@@ -1,20 +1,22 @@
 package com.market.storages;
 
+import com.market.products.Food;
 import com.market.products.NewFood;
 
 public class LowTemperatureStore extends Storage {
 
-    protected NewFood food;
+    protected NewFood newFood;
 
     @Override
-    public boolean accept(int percent) {
-        if (food.isVegetable() && percent < 100) {
+    public boolean accept(Food food) {
+        if (newFood.isVegetable() && food.getPercent() < 100) {
+            foods.add(newFood);
             return true;
         }
         return false;
     }
 
     public void setFood(NewFood food) {
-        this.food = food;
+        this.newFood = food;
     }
 }
