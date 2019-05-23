@@ -3,8 +3,8 @@ package com.vehicles.land;
 public class Bike extends LandVehicle {
 
     public Bike() {
-        className = "Bike";
-        fullNames();
+        putOnMap("Bike");
+        level = 1;
     }
 
     @Override

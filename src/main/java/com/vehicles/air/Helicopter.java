@@ -3,8 +3,8 @@ package com.vehicles.air;
 public class Helicopter extends AirVehicle {
 
     public Helicopter() {
-        className = "Helicopter";
-        fullNames();
+        putOnMap("Helicopter");
+        level = 1;
     }
 
     @Override

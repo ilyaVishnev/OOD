@@ -3,8 +3,7 @@ package com.vehicles.air;
 public class Airplane extends AirVehicle {
 
     public Airplane() {
-        className = "Airplane";
-        fullNames();
+        putOnMap("Airplane");
     }
 
     @Override

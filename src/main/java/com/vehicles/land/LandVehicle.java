@@ -5,9 +5,7 @@ import com.vehicles.Vehicle;
 public abstract class LandVehicle extends Vehicle {
 
     public LandVehicle() {
-        className = "LandVehicle";
-        fullNames();
-        highTree++;
+        putOnMap("LandVehicle");
     }
 
     @Override

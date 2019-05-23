@@ -13,61 +13,57 @@ import java.util.*;
 
 public class Vehicle {
 
-    public static List<String> names = new ArrayList<>(Arrays.asList("Vehicle"));
-    public static Integer highTree;
-    public static String className;
+    public static final Map<Integer, String> levels = new HashMap();
+    public static final Map<String, String> names = new HashMap();
+    String number = "1.";
+    String item = "";
+    public Integer level = 1;
 
     public Vehicle() {
-        className = "Vehicle";
-        highTree = 0;
-        fullNames();
-        highTree++;
+        levels.put(1, Vehicle.class.getSimpleName());
     }
 
     public void getActivities() {
         System.out.print(" move");
     }
 
-    public void fullNames() {
-        if (highTree < names.size()) {
-            if (!names.get(highTree).contains(className)) {
-                names.set(highTree, names.get(highTree) + " " + className);
-            }
-        } else {
-            names.add(highTree, className);
-        }
+    public void getNames() {
+        String root = levels.get(1);
+        System.out.println(getLine(root));
     }
 
-    public List<String> getNames() {
-        int widthTree = names.get(names.size() - 1).length();
-        for (int index = 0; index < names.size() - 1; index++) {
-            names.set(index, getName(names.get(index), widthTree));
+    public String getLine(String root) {
+        item += number + root + "\n";
+        if (names.get(root) == null) {
+            return "\n";
         }
-        Collections.reverse(names);
-        return names;
+        String[] items = names.get(root).split(" ");
+        for (int index = 0; index < items.length; index++) {
+            number = number + (index + 1) + ".";
+            getLine(items[index]);
+            number = number.substring(0, number.indexOf(".", number.length() - 3) + 1);
+        }
+        return item;
     }
 
-    public String getName(String name, int widthTree) {
-        int countNames = name.split(" ").length;
-        int space = ((widthTree - name.replace(" ", "").length()) / countNames) / 2;
-        String part = " ";
-        for (int index = 0; index < space; index++) {
-            part += " ";
-        }
-        return part + name.replace(" ", part) + part;
+    public void putOnMap(String className) {
+        String key = levels.get(level);
+        names.put(key, names.get(key) != null ? (names.get(key).contains(className) ? names.get(key) : names.get(key) + " " + className) : className);
+        levels.put(++level, className);
     }
 
     /**
-     * use List of entities to create a tree by initialisation .
+     * use List of entities to create a menu by initialisation .
      * Put name of entitiy and get its activities.
      *
      * @param args
      */
     public static void main(String[] args) {
+        List<Vehicle> vehicles = Arrays.asList(new Ship(), new Airplane(), new Car(), new Bike());
+        vehicles.get(0).getNames();
+
         Scanner scanner = new Scanner(System.in);
         String line;
-        List<Vehicle> vehicles = Arrays.asList(new Bike(), new Car(), new Bus(), new Airplane(), new Helicopter());
-        vehicles.get(0).getNames().forEach(s -> System.out.println(s));
         while (!(line = scanner.nextLine()).equals("exit")) {
             for (Vehicle vehicle : vehicles) {
                 if (vehicle.getClass().getSimpleName().equals(line)) {

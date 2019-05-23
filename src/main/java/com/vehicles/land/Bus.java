@@ -2,8 +2,8 @@ package com.vehicles.land;
 
 public class Bus extends LandVehicle {
     public Bus() {
-        className = "Bus";
-        fullNames();
+        putOnMap("Bus");
+        level = 1;
     }
 
     @Override

@@ -5,9 +5,7 @@ import com.vehicles.Vehicle;
 public abstract class AirVehicle extends Vehicle {
 
     public AirVehicle() {
-        className = "AirVehicle";
-        fullNames();
-        highTree++;
+        putOnMap("AirVehicle");
     }
 
     @Override

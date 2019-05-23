@@ -2,8 +2,8 @@ package com.vehicles.water;
 
 public class Ship extends WaterVehicle {
     public Ship() {
-        className = "Ship";
-        fullNames();
+        putOnMap("Ship");
+        level = 1;
     }
 
     @Override

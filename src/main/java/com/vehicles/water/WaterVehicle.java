@@ -5,9 +5,7 @@ import com.vehicles.Vehicle;
 public abstract class WaterVehicle extends Vehicle {
 
     public WaterVehicle() {
-        className = "WaterVehicle";
-        fullNames();
-        highTree++;
+        putOnMap("WaterVehicle");
     }
 
     @Override
