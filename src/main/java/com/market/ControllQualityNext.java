@@ -6,6 +6,8 @@ import com.market.products.Pie;
 import com.market.storages.*;
 
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class ControllQualityNext extends ControllQuality {
@@ -35,5 +37,21 @@ public class ControllQualityNext extends ControllQuality {
 
     public void setNewFood(NewFood newFood) {
         this.newFood = newFood;
+    }
+
+    public void resort() {
+        Iterator<Storage> iterator = getStorages().iterator();
+        while (iterator.hasNext()) {
+            Storage storage = iterator.next();
+            List<Food> foods = storage.getFoods();
+            for (int index = 0; index < foods.size(); index++) {
+                Food food = foods.get(index);
+                if (!storage.accept(food)) {
+                    putFoodToStorage(food);
+                    foods.remove(food);
+                    System.out.println("remove from storage: " + storage + "; " + "food: " + food.getName());
+                }
+            }
+        }
     }
 }

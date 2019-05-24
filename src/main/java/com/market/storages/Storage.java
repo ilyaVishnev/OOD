@@ -19,6 +19,14 @@ public abstract class Storage {
         foods.remove(foods.size() - 1);
     }
 
+    public List<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(List<Food> foods) {
+        this.foods = foods;
+    }
+
     public Food getLastOne() {
         return foods.get(foods.size() - 1);
     }

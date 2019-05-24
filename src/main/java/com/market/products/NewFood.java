@@ -15,16 +15,6 @@ public class NewFood extends Food {
         this.food = food;
     }
 
-    @Override
-    public Integer getDiscount() {
-        return food.getDiscount();
-    }
-
-    @Override
-    public String getName() {
-        return food.getName();
-    }
-
     public Food getFood() {
         return food;
     }
