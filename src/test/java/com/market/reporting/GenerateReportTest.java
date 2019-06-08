@@ -3,6 +3,12 @@ package com.market.reporting;
 import com.market.ControllQualityNext;
 import com.market.products.Cheese;
 import com.market.products.Pie;
+import com.market.reporting.filters.Filter;
+import com.market.reporting.filters.FoodFilter;
+import com.market.reporting.filters.StorageFilter;
+import com.market.reporting.formats.ConsoleFormat;
+import com.market.reporting.formats.FileFormat;
+import com.market.reporting.formats.Format;
 import com.market.storages.Storage;
 import org.junit.After;
 import org.junit.Assert;
@@ -51,6 +57,10 @@ public class GenerateReportTest {
         controllQuality.putFoodToStorage(cheese_for_shop);
         storages = controllQuality.getStorages();
         System.setOut(new PrintStream(out));
+        generateReport.addFilter(new FoodFilter("-food"));
+        generateReport.addFilter(new StorageFilter("-storage"));
+        generateReport.addFormat(new ConsoleFormat("-console"));
+        generateReport.addFormat(new FileFormat("-file"));
     }
 
     @After
@@ -75,8 +85,8 @@ public class GenerateReportTest {
     }
 
     @Test
-    public void whenChoseAllAndWriteInFile() {
-        generateReport.report("-all -file", storages);
+    public void whenChoseFoodAndWriteInFile() {
+        generateReport.report("pie_for_trash -food -file", storages);
         String result = "";
         try (BufferedReader reader = new BufferedReader(new FileReader("myList.txt"))) {
             String line;
@@ -86,6 +96,6 @@ public class GenerateReportTest {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        Assert.assertEquals(result, "pie_for_Warehause\ncheese_for_Warehause\npie_for_trash\n");
+        Assert.assertEquals(result, "pie_for_trash\n");
     }
 }
