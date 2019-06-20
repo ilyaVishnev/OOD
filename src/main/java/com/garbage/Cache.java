@@ -2,14 +2,14 @@ package com.garbage;
 
 import com.google.common.cache.CacheBuilder;
 
+import java.lang.ref.SoftReference;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
 public abstract class Cache {
 
-    public ConcurrentMap<String, Object> objects = CacheBuilder.newBuilder()
-            .softValues()
-            .<String, Object>build()
-            .asMap();
+    public Map<String, SoftReference> objects = new HashMap<>();
 
     public Load load;
 
@@ -21,11 +21,11 @@ public abstract class Cache {
     }
 
     public Object getObject(String key) {
-        Object result = objects.get(key);
+        SoftReference result = objects.get(key);
         if (result == null) {
-            result = load.getObject(key);
+            result = new SoftReference(load.getObject(key));
             objects.put(key, result);
         }
-        return result;
+        return result.get();
     }
 }

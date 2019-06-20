@@ -18,5 +18,6 @@ public class MyCache extends Cache {
     public static void main(String[] args) {
         MyCache myCache = new MyCache(new FileLoad());
         System.out.print(myCache.getObject("first.txt"));
+        System.out.print(myCache.getObject("first.txt"));
     }
 }

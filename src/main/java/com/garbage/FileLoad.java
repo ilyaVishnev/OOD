@@ -6,6 +6,7 @@ import com.google.common.collect.MapMaker;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
